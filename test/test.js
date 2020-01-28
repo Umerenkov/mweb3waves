@@ -9,3 +9,13 @@ it('transfer', async function(){
     await waitForTx(tx.id)
     console.log(JSON.stringify(tx));
 })
+
+it('data transaction', async function(){
+    let aboutObject = {
+        "name": "Valeriy Umerenkov",
+        "occupation": "CBDO @ Encry Foundation"
+    }
+    let aboutString = JSON.stringify(aboutObject)
+    let tx = await broadcast(data({data: [{key: "web3-onlin-course-user-data", value: aboutString}]}, accountASeed))
+    await waitForTx(tx.id)
+})
